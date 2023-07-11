@@ -1,0 +1,21 @@
+{
+  "name": "validadorarquivo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "validador.js",
+  "type": "module",
+  "scripts": {
+    "cnab240:test": "node --test src/cnab240/validador.test.js",
+    "cnab240:validar:remessa": "node src/cnab240/01-validar-remessa.js",
+    "cnab240:convert:RemToCsv": "node src/cnab240/02-conveter-rem-csv.js",
+    "cnab400:test": "node --test src/cnab400/validador.test.js",
+    "cnab400:validar:remessa": "node src/cnab400/01-validar-remessa.js",
+    "cnab400:convert:RemToCsv": "node src/cnab400/02-conveter-rem-csv.js"
+  },
+  "keywords": [],
+  "author": "Marcelo Lourenço",
+  "license": "ISC",
+  "dependencies": {
+    "csv-writer": "^1.6.0"
+  }
+}
