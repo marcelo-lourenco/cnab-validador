@@ -1,5 +1,5 @@
 
-import { validaDadosHeaderArquivo, validaDadosHeaderLote, validaDadosSegmentoA, validaDadosSegmentoB, validaDadosTrailerLote, validaDadosTrailerArquivo } from "./valida-dados.js";
+import { validaDadosHeaderArquivo, validaDadosHeaderLote, validaDadosSegmentoA, validaDadosSegmentoB, validaDadosSegmentoJ, validaDadosSegmentoJ52, validaDadosTrailerLote, validaDadosTrailerArquivo } from "./valida-dados.js";
 
 
 // Array para armazenar os dados dos registros por tipo
@@ -7,6 +7,8 @@ const dadosHeaderArquivo = [];
 const dadosHeaderLote = [];
 const dadosSegmentoA = [];
 const dadosSegmentoB = [];
+const dadosSegmentoJ = [];
+const dadosSegmentoJ52 = [];
 const dadosTrailerLote = [];
 const dadosTrailerArquivo = [];
 
@@ -78,7 +80,6 @@ function definePosicoes(registros) {
       let reservadoBanco = posicao(172, 191);
       let reservadoEmpresa = posicao(192, 211);
       let cnab3 = posicao(212, 240);
-
 
       dadosHeaderArquivo.push({ banco, lote, tipoRegistro, cnab, inscricaoTipo, inscricaoNumero, convenio, agenciaCodigo, agenciaDv, contaNumero, contaDv, dv, nome, nomeBanco, cnab2, codigoRemRet, dataGeracao, horaGeracao, sequencia, layout, densidade, reservadoBanco, reservadoEmpresa, cnab3 });
 
@@ -191,6 +192,58 @@ function definePosicoes(registros) {
 
         validaDadosSegmentoB(i, banco, lote, tipoRegistro, numRegistro, segmento, cnab, incricaoTipo, incricaoNumero, logradouro, numero, complemento, bairro, cidade, cep, complementoCep, estado, vencimento, valorDocumento, abatimento, desconto, mora, multa, codDocFavorecido, aviso, codigoUG, ispb)
       }
+
+      else if (posicao(14, 14) === "J" && posicao(18, 19) === "52") {
+        let banco = posicao(1, 3);
+        let lote = posicao(4, 7);
+        let registro = posicao(8, 8);
+        let numRegistro = posicao(9, 13);
+        let Segmento = posicao(14, 14);
+        let cnab1 = posicao(15, 15);
+        let codMov = posicao(16, 17);
+        let codigoRegOpcional = posicao(18, 19);
+        let sacadoTipoInscricao = posicao(20, 20);
+        let sacadoNumeroInscricao = posicao(21, 35);
+        let sacadoNome = posicao(36, 75);
+        let cedenteTipoInscricao = posicao(76, 76);
+        let cedenteNumeroInscricao = posicao(77, 91);
+        let cedenteNome = posicao(92, 131);
+        let sacadorTipoInscricao = posicao(132, 132);
+        let sacadorNumeroInscricao = posicao(133, 147);
+        let sacadorNome = posicao(148, 187);
+        let cnab2 = posicao(188, 240);
+        dadosSegmentoJ52.push({ banco, lote, registro, numRegistro, Segmento, cnab1, codMov, codigoRegOpcional, sacadoTipoInscricao, sacadoNumeroInscricao, sacadoNome, cedenteTipoInscricao, cedenteNumeroInscricao, cedenteNome, sacadorTipoInscricao, sacadorNumeroInscricao, sacadorNome, cnab2 });
+
+        validaDadosSegmentoJ52(i, banco, lote, registro, numRegistro, Segmento, cnab1, codMov, codigoRegOpcional, sacadoTipoInscricao, sacadoNumeroInscricao, sacadoNome, cedenteTipoInscricao, cedenteNumeroInscricao, cedenteNome, sacadorTipoInscricao, sacadorNumeroInscricao, sacadorNome, cnab2)
+      }
+
+      else if (posicao(14, 14) === "J") {
+        let banco = posicao(1, 3);
+        let lote = posicao(4, 7);
+        let tipoRegistro = posicao(8, 8);
+        let numRegistro = posicao(9, 13);
+        let segmento = posicao(14, 14);
+        let tipoMovimento = posicao(15, 15);
+        let codigoInstrucao = posicao(16, 17);
+        let codigoBarras = posicao(18, 61);
+        let nomeCedente = posicao(62, 91);
+        let dataVencimento = posicao(92, 99);
+        let valorTitulo = posicao(100, 114);
+        let desconto = posicao(115, 129);
+        let acrescimos = posicao(130, 144);
+        let dataPagamento = posicao(145, 152);
+        let valorPagamento = posicao(153, 167);
+        let quantidadeMoeda = posicao(168, 182);
+        let referenciaSacado = posicao(183, 202);
+        let nossoNumero = posicao(203, 222);
+        let codigoMoeda = posicao(223, 224);
+        let cnab = posicao(225, 230);
+        let ocorrencias = posicao(231, 240);
+
+        dadosSegmentoJ.push({ banco, lote, tipoRegistro, numRegistro, segmento, tipoMovimento, codigoInstrucao, codigoBarras, nomeCedente, dataVencimento, valorTitulo, desconto, acrescimos, dataPagamento, valorPagamento, quantidadeMoeda, referenciaSacado, nossoNumero, codigoMoeda, cnab, ocorrencias });
+
+        validaDadosSegmentoJ(i, banco, lote, tipoRegistro, numRegistro, segmento, tipoMovimento, codigoInstrucao, codigoBarras, nomeCedente, dataVencimento, valorTitulo, desconto, acrescimos, dataPagamento, valorPagamento, quantidadeMoeda, referenciaSacado, nossoNumero, codigoMoeda, cnab, ocorrencias)
+      }
     }
 
     else if (tipReg === "trailerLote") {
@@ -237,6 +290,8 @@ export {
   dadosHeaderLote,
   dadosSegmentoA,
   dadosSegmentoB,
+  dadosSegmentoJ,
+  dadosSegmentoJ52,
   dadosTrailerLote,
   dadosTrailerArquivo,
   posicoesHeaderArquivo

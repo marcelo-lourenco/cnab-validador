@@ -8,6 +8,8 @@ import {
   dadosHeaderLote,
   dadosSegmentoA,
   dadosSegmentoB,
+  dadosSegmentoJ,
+  dadosSegmentoJ52,
   dadosTrailerLote,
   dadosTrailerArquivo
 } from "./mapa-posicoes.js";
@@ -176,6 +178,51 @@ const cabecalhoHeaderSegmentoB = [
   { id: 'ispb', title: 'ispb' }
 ]
 
+// cabeçalho do arquivo com registros Detalhes - Segmento J
+const cabecalhoHeaderSegmentoJ = [
+  { id: 'banco', title: 'banco' },
+  { id: 'lote', title: 'lote' },
+  { id: 'registro', title: 'registro' },
+  { id: 'numRegistro', title: 'numRegistro' },
+  { id: 'segmento', title: 'segmento' },
+  { id: 'tipoMovimento', title: 'tipoMovimento' },
+  { id: 'codigoInstrucao', title: 'codigoInstrucao' },
+  { id: 'codigoBarras', title: 'codigoBarras' },
+  { id: 'nomeCedente', title: 'nomeCedente' },
+  { id: 'dataVencimento', title: 'dataVencimento' },
+  { id: 'valorTitulo', title: 'valorTitulo' },
+  { id: 'desconto', title: 'desconto' },
+  { id: 'acrescimos', title: 'acrescimos' },
+  { id: 'dataPagamento', title: 'dataPagamento' },
+  { id: 'valorPagamento', title: 'valorPagamento' },
+  { id: 'quantidadeMoeda', title: 'quantidadeMoeda' },
+  { id: 'referenciaSacado', title: 'referenciaSacado' },
+  { id: 'nossoNumero', title: 'nossoNumero' },
+  { id: 'codigoMoeda', title: 'codigoMoeda' },
+  { id: 'cnab', title: 'cnab' },
+  { id: 'ocorrencias', title: 'ocorrencias' },
+]
+
+const cabecalhoHeaderSegmentoJ52 = [
+  { id: 'banco', title: 'Banco' },
+  { id: 'lote', title: 'Lote' },
+  { id: 'registro', title: 'registro' },
+  { id: 'numRegistro', title: 'numRegistro' },
+  { id: 'segmento', title: 'segmento' },
+  { id: 'cnab1', title: 'cnab1' },
+  { id: 'codMov', title: 'codMov' },
+  { id: 'codigoRegOpcional', title: 'codigoRegOpcional' },
+  { id: 'sacadoTipoInscricao', title: 'sacadoTipoInscricao' },
+  { id: 'sacadoNumeroInscricao', title: 'sacadoNumeroInscricao' },
+  { id: 'sacadoNome', title: 'sacadoNome' },
+  { id: 'cedenteTipoInscricao', title: 'cedenteTipoInscricao' },
+  { id: 'cedenteNumeroInscricao', title: 'cedenteNumeroInscricao' },
+  { id: 'cedenteNome', title: 'cedenteNome' },
+  { id: 'sacadorTipoInscricao', title: 'sacadorTipoInscricao' },
+  { id: 'sacadorNumeroInscricao', title: 'sacadorNumeroInscricao' },
+  { id: 'sacadorNome', title: 'sacadorNome' },
+  { id: 'cnab2', title: 'cnab2' }
+];
 // cabeçalho do arquivo com registros "Trailer Lote"
 const cabecalhoTrailerLote = [
   { id: 'banco', title: 'banco' },
@@ -254,6 +301,36 @@ const csvWriterSegmentoB = createCsvWriter({
 csvWriterSegmentoB.writeRecords(dadosSegmentoB)
   .then(() => console.log(`Arquivo ${nomeArquivoSegmentoB} gerado com sucesso!`))
   .catch(error => console.error(error));
+
+
+// ----------------------------------------------
+
+// Escrever os dados do segmento J em um arquivo CSV
+const nomeArquivoSegmentoJ = `${pathCsv}/3-segmento-J.csv`;
+const csvWriterSegmentoJ = createCsvWriter({
+  path: nomeArquivoSegmentoJ,
+  header: cabecalhoHeaderSegmentoJ
+});
+
+csvWriterSegmentoJ.writeRecords(dadosSegmentoJ)
+  .then(() => console.log(`Arquivo ${nomeArquivoSegmentoJ} gerado com sucesso!`))
+  .catch(error => console.error(error));
+
+
+  // ----------------------------------------------
+
+// Escrever os dados do segmento J52 em um arquivo CSV
+const nomeArquivoSegmentoJ52 = `${pathCsv}/3-segmento-J52.csv`;
+const csvWriterSegmentoJ52 = createCsvWriter({
+  path: nomeArquivoSegmentoJ52,
+  header: cabecalhoHeaderSegmentoJ52
+});
+
+csvWriterSegmentoJ52.writeRecords(dadosSegmentoJ52)
+  .then(() => console.log(`Arquivo ${nomeArquivoSegmentoJ52} gerado com sucesso!`))
+  .catch(error => console.error(error));
+
+
 
 // ----------------------------------------------
 
