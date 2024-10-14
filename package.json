@@ -1,5 +1,5 @@
 {
-  "name": "validadorarquivo",
+  "name": "cnab-validador",
   "version": "1.0.0",
   "description": "",
   "main": "validador.js",
